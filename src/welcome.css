@@ -6,24 +6,36 @@
 .replay-intro{background:none;color:inherit;font:inherit;min-height:44px;padding:8px 0}
 .welcome-intro{position:fixed;inset:0;width:100%;max-width:none;height:100%;max-height:none;margin:0;border:0;padding:0;overflow:hidden;color:#f4eee6;background:#350309;isolation:isolate;animation:dream-open .95s 2.65s cubic-bezier(.76,0,.24,1) forwards}
 .welcome-intro::backdrop{background:transparent}
-.dream-light{position:absolute;inset:-35%;z-index:-1;background:radial-gradient(ellipse at 46% 55%,#b26c354d,transparent 30%),radial-gradient(ellipse at 65% 40%,#920d2c80,transparent 45%),linear-gradient(125deg,#230208,#640913 55%,#290309);animation:dream-breathe 3.6s ease-in-out both}
 .dream-orbit{position:absolute;left:50%;top:50%;width:min(75vw,800px);aspect-ratio:1;border:1px solid #d9b16b29;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%) rotate(-35deg) scaleX(.72);animation:orbit-emerge 2.6s ease-out both}
-.orbit-two{width:min(90vw,1040px);transform:translate(-50%,-50%) rotate(30deg) scaleX(.7);border-color:#d9b16b12}
 .welcome-edition{position:absolute;left:6%;top:36px;font:9px/1.5 Arial,sans-serif;text-transform:uppercase;letter-spacing:.2em;color:#d5bca6}
 .welcome-center{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 24px;gap:30px;text-align:center}
-.welcome-seal{width:168px;height:168px;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle,#f5e7d9,#d8b78c);box-shadow:0 0 90px #c6974233,inset 0 0 0 1px #f8e6c799;animation:seal-emerge 1.5s cubic-bezier(.16,1,.3,1) both}
-.welcome-seal .brand-logo{width:143px}
-.welcome-center p{font:clamp(35px,5.5vw,76px)/1.08 Georgia,serif;letter-spacing:-.055em;animation:words-emerge 1.1s .35s both}
-.welcome-center em{color:#d9b681}
-.welcome-rule{height:1px;width:85px;background:#dfc29a;transform-origin:left;animation:rule-emerge 2.25s .3s both}
 .welcome-caption{position:absolute;bottom:38px;left:6%;font:9px Arial;letter-spacing:.16em;text-transform:uppercase;color:#d5bca6}
 .welcome-skip{position:absolute;right:6%;bottom:25px;background:transparent;color:#f4eee6;min-height:44px;padding:12px 0;font-size:11px;border-bottom:1px solid #dec09966;display:flex;gap:24px;align-items:center}
-@keyframes seal-emerge{from{opacity:0;filter:blur(16px);transform:translateY(16px) scale(.88)}to{opacity:1;filter:blur(0);transform:none}}
-@keyframes words-emerge{from{opacity:0;filter:blur(8px);transform:translateY(20px)}to{opacity:1;filter:blur(0);transform:none}}
-@keyframes rule-emerge{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
-@keyframes orbit-emerge{from{opacity:0;filter:blur(8px)}to{opacity:1;filter:blur(0)}}
-@keyframes dream-breathe{from{transform:scale(1.15) rotate(-8deg)}to{transform:scale(1) rotate(8deg)}}
-@keyframes dream-open{0%{clip-path:inset(0 0 0 0);filter:blur(0)}100%{clip-path:inset(0 0 100% 0);filter:blur(5px)}}
 @media(max-width:600px){.welcome-caption{bottom:86px;font-size:8px;left:0;right:0;text-align:center}.welcome-skip{right:50%;transform:translateX(50%);white-space:nowrap}.welcome-edition{font-size:8px;left:0;right:0;text-align:center}.welcome-seal{width:142px;height:142px}.welcome-seal .brand-logo{width:120px}.site-header .brand-logo{width:60px}}
 @media(max-height:500px){.welcome-center{padding:55px 20px 65px;gap:12px}.welcome-seal{width:92px;height:92px;flex-shrink:0}.welcome-seal .brand-logo{width:78px}.welcome-center p{font-size:32px}.welcome-edition{top:18px}.welcome-caption{bottom:20px}.welcome-skip{bottom:8px}}
 @media(prefers-reduced-motion:reduce){.welcome-intro{display:none}}
+/* Organic material sequence, sharing BEEZARD's 8.2 second choreography. */
+.welcome-intro{background:#210309;animation:dream-exit 1.3s 6.9s ease-in-out forwards}
+.dream-canvas,.dream-fallback,.dream-vignette{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.dream-fallback{background:linear-gradient(#59050c66,#59050c99),url('/images/intro-material.webp') center/cover;background-blend-mode:color;animation:material-dream 6.4s forwards}
+.dream-canvas{opacity:0}.dream-canvas.ready{opacity:1}.dream-fallback:has(+.dream-canvas.ready){visibility:hidden}
+.dream-vignette{background:radial-gradient(ellipse,transparent 15%,#21030999 100%);box-shadow:inset 0 0 160px #21030955}
+.dream-orbit{width:42vmin;transform:translate(-50%,-50%);filter:blur(2px);opacity:0;animation:ring-dream 6s 1s ease-out forwards}
+.dream-whisper{position:absolute;top:42%;left:5%;width:90%;text-align:center;font:italic clamp(28px,4vw,64px)/1.2 Georgia,serif;letter-spacing:-.04em;opacity:0;animation:whisper-dream 3.7s .3s both;text-shadow:0 2px 50px #210309}
+.dream-whisper em{font-weight:400;color:#f1d2a3}
+.welcome-center{position:absolute;inset:0;gap:28px;opacity:0;animation:logo-dream 3.9s 3.2s forwards}
+.welcome-signature{position:relative;isolation:isolate}
+.welcome-signature:before{content:'';position:absolute;inset:-28%;z-index:-1;background:radial-gradient(ellipse,#e8c79c66,transparent 68%);filter:blur(28px)}
+.welcome-signature .brand-logo{width:clamp(220px,32vw,440px);filter:drop-shadow(0 0 1px #e5bf89) drop-shadow(0 12px 35px #0e0008)}
+.welcome-center>span{font:9px/1.6 Arial,sans-serif;text-transform:uppercase;letter-spacing:.28em;color:#dbc2a3;text-align:center;padding:0 22px}
+.welcome-caption{font:italic 19px Georgia,serif;text-transform:none;letter-spacing:normal;opacity:0;animation:logo-dream 3s 3.8s forwards}
+.welcome-skip{z-index:2}.welcome-skip:focus-visible{outline:1px solid #f4ead6;outline-offset:7px}
+.dream-progress{position:absolute;bottom:0;left:0;width:100%;height:2px;background:#d9b16b;transform-origin:left;animation:progress-dream 8.2s linear forwards}
+@keyframes whisper-dream{0%{opacity:0;filter:blur(18px);transform:translateY(20px)}30%,60%{opacity:1;filter:blur(0);transform:translateY(0)}100%{opacity:0;filter:blur(16px);transform:translateY(-25px)}}
+@keyframes logo-dream{0%{opacity:0;filter:blur(24px);transform:scale(.92)}45%,100%{opacity:1;filter:blur(0);transform:scale(1)}}
+@keyframes ring-dream{20%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(3.5);filter:blur(18px)}}
+@keyframes material-dream{0%{transform:scale(1.04);opacity:1}40%{opacity:1}100%{transform:scale(1.2);opacity:0;filter:blur(28px)}}
+@keyframes dream-exit{to{opacity:0;filter:blur(16px);visibility:hidden}}
+@keyframes progress-dream{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(max-width:600px){.welcome-caption{font-size:16px}.welcome-center>span{font-size:8px;letter-spacing:.16em}.dream-whisper{top:40%}}
+@media(max-height:500px){.welcome-signature .brand-logo{width:180px}.welcome-center{gap:12px}.dream-whisper{font-size:32px}}
