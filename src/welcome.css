@@ -48,3 +48,4 @@
 .bertine .project-art:hover .bertine-brand img{transform:rotate(0)}
 @media(max-width:600px){.bertine-brand{top:24%;gap:14px}.bertine-character{left:0;width:62%}.bertine-brand span{font-size:17px}}
 @media(prefers-reduced-motion:reduce){.bertine-character,.bertine-brand img{transition:none}.bertine .project-art:hover .bertine-character{transform:none}}
+@media(max-width:600px){.bertine .project-caption{flex-direction:column}.bertine .project-caption>div{max-width:100%;flex-shrink:1}.bertine .project-caption>span{max-width:100%}}
