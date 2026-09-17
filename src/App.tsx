@@ -20,9 +20,6 @@ function Hero() {
       <img src="/images/portrait.webp" alt="Laxshmee Koomar, directrice artistique" width="1333" height="2000" fetchPriority="high" />
       <span className="portrait-caption">Le sens du détail. L’envie de créer.</span>
     </motion.div>
-    <motion.div className="portrait-face" aria-hidden="true" style={{ y: reduced ? 0 : y }} initial={{ clipPath: reduced ? 'inset(0%)' : 'inset(100% 0% 0% 0%)' }} animate={{ clipPath: 'inset(0% 0% 0% 0%)' }} transition={{ duration: 1.3, delay: .15, ease: [.22, 1, .36, 1] }}>
-      <img src="/images/portrait.webp" alt="" width="1333" height="2000" />
-    </motion.div>
     <div className="hero-left"><span className="little-star" aria-hidden="true">✳</span><p>Une idée.<br/>Un univers.<br/><em>Votre signature.</em></p></div>
     <div className="hero-right"><p>Directrice artistique &<br/>coordinatrice de projets créatifs.</p><a href={contactHref} className="hero-contact">Créons quelque chose ensemble <ArrowUpRight size={20}/></a></div>
     <div className="hero-bottom"><a href="#projets" className="scroll-link"><span className="circle"><ArrowDown size={18}/></span>Explorer mon univers</a><span className="hero-note">Des identités qui ont du sens.<br/>Et qui font la différence.</span><span className="edition">01 — 04</span></div>
