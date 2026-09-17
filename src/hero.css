@@ -1,0 +1,49 @@
+/* The title and photograph share one vertical geometry. The overlap contains
+   only the photograph's natural dark headroom, above the subject's hair. */
+.hero {
+  --name-size: clamp(110px, 15.4vw, 245px);
+  --name-top: 11%;
+  --name-leading: .79;
+  --portrait-overlap: min(64px, 3vw);
+  --portrait-bottom: 56px;
+  --portrait-top: calc(var(--name-top) + var(--name-size) * var(--name-leading) * 2 - var(--portrait-overlap));
+  min-height: max(760px, calc(var(--name-size) * 1.58 + 440px));
+}
+
+.hero h1 {
+  top: var(--name-top);
+  font-size: var(--name-size);
+  line-height: var(--name-leading);
+}
+
+.hero .portrait-frame {
+  top: var(--portrait-top);
+  height: calc(100% - var(--portrait-top) - var(--portrait-bottom));
+  max-width: 480px;
+  background: #1c1c1c;
+}
+
+.hero .portrait-frame img {
+  object-position: 50% 0%;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    --name-size: 16vw;
+    --name-top: 12%;
+    --portrait-overlap: min(46px, 4vw);
+    min-height: 760px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    --name-size: 21vw;
+    --name-top: 11%;
+    --name-leading: .91;
+    --portrait-overlap: min(32px, 6vw);
+    --portrait-bottom: 146px;
+    min-height: 740px;
+  }
+  .hero-left { font-size: clamp(16px, 4.4vw, 21px); }
+}

@@ -8,7 +8,7 @@ export default defineConfig({
     setupFiles: ['./src/test-setup.ts'],
     coverage: {
       provider: 'v8',
-      include: ['src/App.tsx', 'src/ProjectDialog.tsx', 'src/data.ts'],
+      include: ['src/App.tsx', 'src/ProjectDialog.tsx', 'src/data.ts', 'src/WelcomeIntro.tsx', 'src/BrandLogo.tsx'],
       reporter: ['text', 'html'],
       thresholds: {
         statements: 80,
