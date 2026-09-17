@@ -15,7 +15,7 @@ describe('Portfolio de Laxshmee Koomar', () => {
 
     expect(screen.getByRole('heading', { level: 1, name: /Laxshmee\s*Koomar/i })).toBeInTheDocument()
     const destinations = [
-      [/^Projets(?:\s*\(02\))?$/, '#projets'],
+      [/^Projets(?:\s*\(03\))?$/, '#projets'],
       [/^À propos$/, '#apropos'],
       [/^Contact$/, '#contact'],
     ] as const
@@ -40,6 +40,25 @@ describe('Portfolio de Laxshmee Koomar', () => {
     const dialog = screen.getByRole('dialog')
     expect(dialog).toBeVisible()
     await waitFor(() => expect(within(dialog).getByRole('heading', { name: project, exact: true })).toBeVisible())
+
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Fermer le projet' }))
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
+  it('présente Bertine avec ses sept visuels et actualise le nombre de projets', async () => {
+    render(<App />)
+
+    expect(screen.getByRole('link', { name: /^Projets\s*\(03\)$/ })).toHaveAttribute('href', '#projets')
+    fireEvent.click(screen.getByRole('button', { name: 'Découvrir Pâtisserie Bertine' }))
+
+    const dialog = screen.getByRole('dialog')
+    await waitFor(() => expect(within(dialog).getByRole('heading', { name: 'Pâtisserie Bertine', exact: true })).toBeVisible())
+    const images = within(dialog).getAllByRole('img')
+    expect(images).toHaveLength(7)
+    images.forEach((image) => {
+      expect(image.getAttribute('alt')).toMatch(/^Pâtisserie Bertine — .+/)
+      expect(image.getAttribute('alt')).not.toContain('undefined')
+    })
 
     fireEvent.click(within(dialog).getByRole('button', { name: 'Fermer le projet' }))
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
