@@ -15,6 +15,9 @@ export default function ContactDialog({ onClose }: Props) {
   const reduced = useReducedMotion();
   const [status, setStatus] = useState<'idle' | 'pending' | 'success' | 'error'>('idle');
   const [localPreview, setLocalPreview] = useState(false);
+  const [closeHovered, setCloseHovered] = useState(false);
+  const [closeFocused, setCloseFocused] = useState(false);
+  const closeExpanded = closeHovered || closeFocused;
   useEffect(() => {
     const previous = document.activeElement as HTMLElement | null;
     const overflow = document.body.style.overflow;
@@ -56,13 +59,17 @@ export default function ContactDialog({ onClose }: Props) {
     onCancel={event => { event.preventDefault(); onClose(); }}>
     <motion.div className="contact-material" aria-hidden="true" initial={reduced ? false : { opacity: 0 }} animate={{ opacity: reduced ? .34 : .58 }} transition={{ duration: reduced ? 0 : 1.6, delay: reduced ? 0 : 1.25 }} />
     <ContactReveal />
-    <button className="contact-close" onClick={onClose} aria-label="Fermer le formulaire"><span>Fermer</span><X size={19} /></button>
+    <motion.button className="contact-close" data-expanded={closeExpanded} onClick={onClose} aria-label="Fermer le formulaire"
+      onHoverStart={() => setCloseHovered(true)} onHoverEnd={() => setCloseHovered(false)} onFocus={event => setCloseFocused(event.currentTarget.matches(':focus-visible'))} onBlur={() => setCloseFocused(false)}
+      initial={false} animate={{ width: closeExpanded ? 128 : 48 }} transition={reduced ? { duration: 0 } : { type: 'spring', stiffness: 240, damping: 25 }}>
+      <span className="contact-close-label">Fermer</span><span className="contact-close-icon"><X size={19} /></span>
+    </motion.button>
     <div className="contact-atmosphere" aria-hidden="true" />
     <motion.div className="contact-composition" initial="hidden" animate="visible"
       variants={{ visible: { transition: { staggerChildren: reduced ? 0 : .12, delayChildren: reduced ? 0 : 1.25 } } }}>
       <motion.aside className="contact-invitation" variants={reveal}>
         <span className="contact-kicker">KOOMAR · UNE RENCONTRE CRÉATIVE</span>
-        <div className="contact-orbit" aria-hidden="true"><motion.span initial={reduced ? false : { rotate: -135, scale: .5 }} animate={{ rotate: 0, scale: 1 }} transition={{ duration: 1.4, ease: [.16, 1, .3, 1] }}><DecorativeStar /></motion.span></div>
+        <div className="contact-star" aria-hidden="true"><motion.span initial={reduced ? false : { rotate: -135, scale: .5 }} animate={{ rotate: 0, scale: 1 }} transition={{ duration: 1.4, ease: [.16, 1, .3, 1] }}><DecorativeStar /></motion.span></div>
         <h2 id="contact-dialog-title">Et si tout<br />commençait<br /><em>par vous ?</em></h2>
         <p>Une envie, une intuition, un projet.<br />Donnons-lui une première étincelle.</p>
         <span className="contact-signature">Laxshmee Koomar</span>

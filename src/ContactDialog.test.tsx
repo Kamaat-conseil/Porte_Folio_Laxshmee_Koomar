@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import ContactDialog from './ContactDialog';
 
@@ -57,6 +57,15 @@ describe('ContactDialog', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Envoyer mon message' }));
     await waitFor(() => expect(screen.getByRole('button', { name: /Envoi en cours/ })).toBeDisabled());
     expect(fetcher).toHaveBeenCalledTimes(1);
+  });
+  it('déploie le bouton Fermer au focus puis ferme au clic', () => {
+    const close = vi.fn();
+    render(<ContactDialog onClose={close} />);
+    const button = screen.getByRole('button', { name: 'Fermer le formulaire' });
+    expect(button).toHaveAttribute('data-expanded', 'false');
+    act(() => button.focus()); expect(button).toHaveAttribute('data-expanded', 'true');
+    act(() => button.blur()); expect(button).toHaveAttribute('data-expanded', 'false');
+    fireEvent.click(button); expect(close).toHaveBeenCalledTimes(1);
   });
   it('ferme avec Échap et restaure le focus et le défilement au démontage', () => {
     const opener = document.createElement('button'); document.body.append(opener); opener.focus();
