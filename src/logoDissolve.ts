@@ -1,7 +1,7 @@
 import { dissolveFragment } from './dissolveShader';
 
 // A single low-resolution GPU layer; no animation library or video download.
-export function startLogoDissolve(canvas: HTMLCanvasElement): () => void {
+export function startLogoDissolve(canvas: HTMLCanvasElement, playbackRate = 1): () => void {
   const gl = canvas.getContext('webgl', { alpha: true, premultipliedAlpha: false, antialias: false });
   if (!gl) return () => {};
   const image = new Image();
@@ -68,7 +68,7 @@ export function startLogoDissolve(canvas: HTMLCanvasElement): () => void {
       if (canvas.width !== width || canvas.height !== height) { canvas.width = width; canvas.height = height; }
       gl.viewport(0, 0, width, height);
       gl.uniform2f(size, width, height);
-      gl.uniform1f(time, (now - start) / 1000);
+      gl.uniform1f(time, (now - start) / 1000 * playbackRate);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
       frame = requestAnimationFrame(draw);
     };

@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import App from './App'
+vi.mock('./logoDissolve', () => ({ startLogoDissolve: () => () => {} }))
 
 const motionPreference = vi.hoisted(() => ({ reduced: true }))
 vi.mock('framer-motion', async (importOriginal) => ({

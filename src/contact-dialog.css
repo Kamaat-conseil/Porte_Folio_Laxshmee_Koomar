@@ -1,7 +1,7 @@
 .contact-dialog{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:#38060d;color:#f4efe5;overflow:auto;isolation:isolate}
 .contact-dialog::backdrop{background:#38060d}
 .contact-dialog *{box-sizing:border-box}
-.contact-veil{position:fixed;inset:0;background:#c7a48c;transform-origin:top;z-index:3;pointer-events:none}
+
 .contact-atmosphere{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 15% 75%,#8c172d77,transparent 65%),radial-gradient(ellipse at 75% 10%,#c7a48c18,transparent 45%)}
 .contact-close{position:fixed;z-index:4;top:24px;right:32px;display:flex;align-items:center;gap:16px;border:1px solid #c7a48c66;color:#f4efe5;background:#38060de6;padding:12px 18px;border-radius:50px;font:inherit;font-size:12px;cursor:pointer;transition:background .3s,color .3s}
 .contact-close:hover{background:#c7a48c;color:#38060d}
@@ -43,3 +43,14 @@
 @media(max-width:850px){.contact-composition{grid-template-columns:1fr;gap:35px;max-width:660px;padding-top:100px}.contact-invitation h2{font-size:60px;margin:24px 0 20px}.contact-invitation>p{font-size:12px}.contact-signature{display:none}.contact-orbit{right:12%;top:60px}.contact-close{right:20px;top:20px}.contact-paper{padding:32px}}
 @media(max-width:480px){.contact-composition{padding:90px 20px 30px;gap:24px}.contact-invitation h2{font-size:48px}.contact-invitation>.contact-kicker{font-size:8px}.contact-orbit{width:80px;height:80px;right:5%;top:50px}.contact-orbit>span{font-size:42px}.contact-paper{padding:28px 23px}.contact-fields-row{grid-template-columns:1fr;gap:0}.contact-paper label{margin-bottom:22px}.contact-paper form>.contact-kicker{font-size:8px;margin-bottom:26px}.contact-close{padding:9px 15px}.contact-success{min-height:390px}}
 @media(prefers-reduced-motion:reduce){.contact-dialog *{transition:none!important}.contact-veil{display:none}}
+
+.contact-reveal{position:fixed;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+.contact-reveal-fallback{position:absolute;inset:0;background:radial-gradient(ellipse at 45% 55%,#8f1730,#26030b 80%);animation:contact-material-fallback 3s both}
+.contact-reveal:has(.ready) .contact-reveal-fallback{display:none}
+.contact-reveal-canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0}
+.contact-reveal-canvas.ready{opacity:1}
+.contact-reveal-signature{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px;color:#f4e1c5}
+.contact-reveal-signature .brand-logo{width:clamp(180px,26vw,330px);filter:drop-shadow(0 0 1px #e5bf89) drop-shadow(0 8px 30px #160009)}
+.contact-reveal-signature>span:last-child{font-family:Georgia,serif;font-style:italic;font-size:clamp(18px,2.4vw,28px);letter-spacing:.01em}
+@keyframes contact-material-fallback{0%,55%{opacity:1}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.contact-reveal{display:none}}

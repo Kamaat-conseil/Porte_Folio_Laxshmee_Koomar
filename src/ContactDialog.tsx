@@ -4,6 +4,7 @@ import { X } from 'lucide-react';
 import DecorativeStar from './DecorativeStar';
 import { submitContact } from './contactSubmission';
 import './contact-dialog.css';
+import ContactReveal from './ContactReveal';
 
 type Props = { onClose: () => void };
 export default function ContactDialog({ onClose }: Props) {
@@ -53,11 +54,11 @@ export default function ContactDialog({ onClose }: Props) {
   };
   return <dialog ref={dialog} className="contact-dialog" aria-labelledby="contact-dialog-title"
     onCancel={event => { event.preventDefault(); onClose(); }}>
-    <motion.div className="contact-veil" aria-hidden="true" initial={reduced ? false : { scaleY: 1 }} animate={{ scaleY: 0 }} transition={{ duration: .9, ease: [.76, 0, .24, 1] }} />
+    <ContactReveal />
     <button className="contact-close" onClick={onClose} aria-label="Fermer le formulaire"><span>Fermer</span><X size={19} /></button>
     <div className="contact-atmosphere" aria-hidden="true" />
     <motion.div className="contact-composition" initial="hidden" animate="visible"
-      variants={{ visible: { transition: { staggerChildren: reduced ? 0 : .09, delayChildren: reduced ? 0 : .25 } } }}>
+      variants={{ visible: { transition: { staggerChildren: reduced ? 0 : .12, delayChildren: reduced ? 0 : 1.25 } } }}>
       <motion.aside className="contact-invitation" variants={reveal}>
         <span className="contact-kicker">KOOMAR · UNE RENCONTRE CRÉATIVE</span>
         <div className="contact-orbit" aria-hidden="true"><motion.span initial={reduced ? false : { rotate: -135, scale: .5 }} animate={{ rotate: 0, scale: 1 }} transition={{ duration: 1.4, ease: [.16, 1, .3, 1] }}><DecorativeStar /></motion.span></div>
