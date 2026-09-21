@@ -54,6 +54,7 @@ export default function ContactDialog({ onClose }: Props) {
   };
   return <dialog ref={dialog} className="contact-dialog" aria-labelledby="contact-dialog-title"
     onCancel={event => { event.preventDefault(); onClose(); }}>
+    <motion.div className="contact-material" aria-hidden="true" initial={reduced ? false : { opacity: 0 }} animate={{ opacity: reduced ? .34 : .58 }} transition={{ duration: reduced ? 0 : 1.6, delay: reduced ? 0 : 1.25 }} />
     <ContactReveal />
     <button className="contact-close" onClick={onClose} aria-label="Fermer le formulaire"><span>Fermer</span><X size={19} /></button>
     <div className="contact-atmosphere" aria-hidden="true" />

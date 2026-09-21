@@ -1,11 +1,14 @@
 .contact-dialog{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:#38060d;color:#f4efe5;overflow:auto;isolation:isolate}
 .contact-dialog::backdrop{background:#38060d}
 .contact-dialog *{box-sizing:border-box}
+.contact-material{position:fixed;inset:-6%;z-index:0;pointer-events:none;overflow:hidden}
+.contact-material:before{content:'';position:absolute;inset:-5%;background:linear-gradient(120deg,#42030c88,#9c1029aa 48%,#31020aaa),url('/images/intro-material.webp') center/cover no-repeat;background-blend-mode:multiply;filter:saturate(1.28) contrast(1.08);transform:scale(1.06);animation:contact-material-drift 24s ease-in-out infinite alternate}
+.contact-material:after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 68% 38%,transparent 0 20%,#38060d44 62%,#240208aa 100%)}
 
 .contact-atmosphere{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 15% 75%,#8c172d77,transparent 65%),radial-gradient(ellipse at 75% 10%,#c7a48c18,transparent 45%)}
 .contact-close{position:fixed;z-index:4;top:24px;right:32px;display:flex;align-items:center;gap:16px;border:1px solid #c7a48c66;color:#f4efe5;background:#38060de6;padding:12px 18px;border-radius:50px;font:inherit;font-size:12px;cursor:pointer;transition:background .3s,color .3s}
 .contact-close:hover{background:#c7a48c;color:#38060d}
-.contact-composition{position:relative;max-width:1450px;min-height:100%;margin:auto;display:grid;grid-template-columns:.85fr 1.15fr;align-items:center;gap:clamp(36px,6vw,100px);padding:110px clamp(24px,6vw,100px) 70px}
+.contact-composition{position:relative;z-index:1;max-width:1450px;min-height:100%;margin:auto;display:grid;grid-template-columns:.85fr 1.15fr;align-items:center;gap:clamp(36px,6vw,100px);padding:110px clamp(24px,6vw,100px) 70px}
 .contact-kicker{display:block;font-size:10px;letter-spacing:.19em;line-height:1.8}
 .contact-invitation{position:relative}
 .contact-invitation h2{font-family:Georgia,serif;font-size:clamp(54px,5.6vw,90px);line-height:.99;font-weight:400;letter-spacing:-.055em;margin:35px 0 28px;position:relative;z-index:1}
@@ -15,7 +18,7 @@
 .contact-orbit{position:absolute;right:15%;top:0;width:115px;height:115px;border:1px solid #c7a48c2b;border-radius:50%;display:grid;place-items:center;transform:translateY(-30%)}
 .contact-orbit:before{content:'';position:absolute;inset:-16px 20px;border:1px solid #c7a48c2b;border-radius:50%;transform:rotate(40deg)}
 .contact-orbit>span{font-size:62px;display:block;color:#c7a48c}
-.contact-paper{position:relative;background:#f1e9df;color:#59050c;padding:clamp(28px,3.5vw,54px);border-radius:3px;box-shadow:0 35px 90px #14000544}
+.contact-paper{position:relative;background:#f5ece2ed;color:#59050c;padding:clamp(28px,3.5vw,54px);border-radius:3px;box-shadow:0 35px 90px #14000566;backdrop-filter:blur(15px) saturate(.85);-webkit-backdrop-filter:blur(15px) saturate(.85)}
 .contact-paper:before{content:'';position:absolute;inset:9px;border:1px solid #59050c19;pointer-events:none}
 .contact-paper form{position:relative}
 .contact-paper form>.contact-kicker{margin-bottom:34px}
@@ -53,4 +56,5 @@
 .contact-reveal-signature .brand-logo{width:clamp(180px,26vw,330px);filter:drop-shadow(0 0 1px #e5bf89) drop-shadow(0 8px 30px #160009)}
 .contact-reveal-signature>span:last-child{font-family:Georgia,serif;font-style:italic;font-size:clamp(18px,2.4vw,28px);letter-spacing:.01em}
 @keyframes contact-material-fallback{0%,55%{opacity:1}100%{opacity:0}}
-@media(prefers-reduced-motion:reduce){.contact-reveal{display:none}}
+@keyframes contact-material-drift{0%{transform:scale(1.06) translate3d(-1.2%,-.8%,0)}50%{transform:scale(1.095) translate3d(1%,.7%,0)}100%{transform:scale(1.07) translate3d(-.4%,1.1%,0)}}
+@media(prefers-reduced-motion:reduce){.contact-reveal{display:none}.contact-material:before{animation:none;transform:scale(1.06)}}
