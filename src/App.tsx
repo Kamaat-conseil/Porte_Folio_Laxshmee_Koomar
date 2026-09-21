@@ -1,18 +1,20 @@
 import { useRef, useState, type ReactNode } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { ArrowDown, ArrowUp, ArrowUpRight, Plus } from 'lucide-react';
-import { contactEmail, contactHref, projects, type Project } from './data';
+import { ArrowDown, ArrowUp, ArrowUpRight } from 'lucide-react';
+import { projects, type Project } from './data';
 import ProjectDialog from './ProjectDialog';
 import BrandLogo from './BrandLogo';
 import DecorativeStar from './DecorativeStar';
 import WelcomeIntro from './WelcomeIntro';
 import SignatureLink from './SignatureLink';
+import Expertise from './Expertise';
+import ContactDialog from './ContactDialog';
 
 function Reveal({ children, className = '' }: { children: ReactNode; className?: string }) {
   const reduced = useReducedMotion();
   return <motion.div className={className} initial={{ opacity: reduced ? 1 : 0, y: reduced ? 0 : 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .12 }} transition={{ duration: .8, ease: [.22, 1, .36, 1] }}>{children}</motion.div>;
 }
-function Hero({ ready }: { ready: boolean }) {
+function Hero({ ready, onContact }: { ready: boolean; onContact: () => void }) {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
@@ -25,7 +27,7 @@ function Hero({ ready }: { ready: boolean }) {
       <span className="portrait-caption">Le sens du détail. L’envie de créer.</span>
     </motion.div>
     <div className="hero-left"><span className="little-star" aria-hidden="true"><DecorativeStar /></span><p>Une idée.<br/>Un univers.<br/><em>Votre signature.</em></p></div>
-    <div className="hero-right"><p>Directrice artistique &<br/>coordinatrice de projets créatifs.</p><SignatureLink href={contactHref} className="hero-contact signature-light">Créons quelque chose ensemble</SignatureLink></div>
+    <div className="hero-right"><p>Directrice artistique &<br/>coordinatrice de projets créatifs.</p><SignatureLink onClick={onContact} className="hero-contact signature-light">Créons quelque chose ensemble</SignatureLink></div>
     <div className="hero-bottom"><a href="#projets" className="scroll-link"><span className="circle"><ArrowDown size={18} aria-hidden="true"/></span>Explorer mon univers</a><span className="hero-note">Des identités qui ont du sens.<br/>Et qui font la différence.</span><span className="edition">01 — 04</span></div>
   </section>;
 }
@@ -43,24 +45,27 @@ function ProjectCard({ project, index, onSelect }: { project: Project; index: nu
     <div className="project-caption"><div><span className="project-number">0{index + 1}</span><h3>{project.name}</h3></div><span>{project.category}</span></div>
   </Reveal>;
 }
-function Contact() {
-  return <section id="contact" className="contact"><Reveal><div className="section-top"><span className="eyebrow">04 / La prochaine histoire</span><span className="contact-star" aria-hidden="true"><DecorativeStar /></span></div><h2>Et si on créait<br/><em>la suite ?</em></h2><div className="contact-bottom"><p>Une idée à faire grandir, une marque à révéler ?<br/>Tout commence par une conversation.</p><SignatureLink className="signature-light" href={contactHref}>Parlons de votre projet</SignatureLink></div><SignatureLink className="email signature-light" href={contactHref}>{contactEmail}</SignatureLink></Reveal></section>;
+function Contact({ onContact }: { onContact: () => void }) {
+  return <section id="contact" className="contact"><Reveal><div className="section-top"><span className="eyebrow">04 / La prochaine histoire</span><span className="contact-star" aria-hidden="true"><DecorativeStar /></span></div><h2>Et si on créait<br/><em>la suite ?</em></h2><div className="contact-bottom"><p>Une idée à faire grandir, une marque à révéler ?<br/>Tout commence par une conversation.</p><SignatureLink className="signature-light" onClick={onContact}>Parlons de votre projet</SignatureLink></div></Reveal></section>;
 }
 export default function App() {
+  const [contactOpen, setContactOpen] = useState(false);
+  const onContact = () => setContactOpen(true);
   const [selected, setSelected] = useState<Project | null>(null);
   const [ready, setReady] = useState(false);
   const [introVersion, setIntroVersion] = useState(0);
   return <>
     <WelcomeIntro key={introVersion} force={introVersion > 0} onComplete={() => setReady(true)} />
     <a className="skip-link" href="#projets">Aller aux projets</a>
-    <header className="site-header"><a href="#" className="wordmark" aria-label="Laxshmee Koomar, accueil"><BrandLogo /></a><nav aria-label="Navigation principale"><a href="#projets">Projets <span>({String(projects.length).padStart(2, '0')})</span></a><a href="#apropos">À propos</a><a href="#contact" className="nav-contact">Contact</a></nav></header>
-    <main><Hero ready={ready}/>
+    <header className="site-header"><a href="#" className="wordmark" aria-label="Laxshmee Koomar, accueil"><BrandLogo /></a><nav aria-label="Navigation principale"><a href="#projets">Projets <span>({String(projects.length).padStart(2, '0')})</span></a><a href="#apropos">À propos</a><button type="button" className="nav-contact" onClick={onContact}>Contact</button></nav></header>
+    <main><Hero ready={ready} onContact={onContact}/>
       <section className="intro"><Reveal><span className="eyebrow">01 / L’intention</span><h2>L’art de rendre simple<br/><em>l’inoubliable.</em><span className="intro-star" aria-hidden="true"><DecorativeStar /></span></h2><div className="intro-bottom"><span className="small-rule"/><p>Je transforme une idée en un univers de marque<br className="desktop-break"/> cohérent, identifiable et vivant.</p><a className="inline-link" href="#projets">Une sélection de projets <ArrowDown size={17} aria-hidden="true"/></a></div></Reveal></section>
       <section id="projets" className="projects"><div className="section-top"><span className="eyebrow">02 / Univers choisis</span><span className="eyebrow">2025 — 2026</span></div><Reveal className="projects-heading"><h2>Chaque marque,<br/><em>une histoire.</em></h2><p>De la première intuition<br/>au dernier détail.</p></Reveal>{projects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} onSelect={setSelected}/>)}</section>
-      <section id="apropos" className="about"><Reveal className="about-image"><img src="/images/portrait.webp" alt="Portrait de Laxshmee Koomar" width="1333" height="2000" loading="lazy"/><span>Laxshmee Koomar / KMR Design</span></Reveal><Reveal className="about-copy"><span className="eyebrow">03 / Derrière les idées</span><h2>De la sensibilité.<br/>Du sens.<br/><em>Du caractère.</em></h2><p>Créer une identité, c’est raconter une histoire. De la stratégie à l’image, chaque détail a du sens.</p><p>J’accompagne les marques et les entrepreneures dans la construction et le déploiement de leur univers visuel. De la réflexion stratégique à la production des contenus, je veille à créer des identités cohérentes, singulières et pensées pour durer.</p><div className="expertise">{['Direction artistique', 'Identité visuelle', 'Contenus & social media', 'Coordination créative'].map(item => <div key={item}><span>{item}</span><Plus size={16}/></div>)}</div><SignatureLink href={contactHref}>Faisons connaissance</SignatureLink></Reveal></section>
-      <div className="marquee" aria-hidden="true"><div>{Array.from({length:4},(_,i)=><span key={i}>De l’idée à l’émotion <i><DecorativeStar /></i> Du sens à l’image <i><DecorativeStar /></i> </span>)}</div></div><Contact/>
+      <section id="apropos" className="about"><Reveal className="about-image"><img src="/images/portrait.webp" alt="Portrait de Laxshmee Koomar" width="1333" height="2000" loading="lazy"/><span>Laxshmee Koomar / KMR Design</span></Reveal><Reveal className="about-copy"><span className="eyebrow">03 / Derrière les idées</span><h2>De la sensibilité.<br/>Du sens.<br/><em>Du caractère.</em></h2><p>Créer une identité, c’est raconter une histoire. De la stratégie à l’image, chaque détail a du sens.</p><p>J’accompagne les marques et les entrepreneures dans la construction et le déploiement de leur univers visuel. De la réflexion stratégique à la production des contenus, je veille à créer des identités cohérentes, singulières et pensées pour durer.</p><Expertise /><SignatureLink onClick={onContact}>Faisons connaissance</SignatureLink></Reveal></section>
+      <div className="marquee" aria-hidden="true"><div>{Array.from({length:4},(_,i)=><span key={i}>De l’idée à l’émotion <i><DecorativeStar /></i> Du sens à l’image <i><DecorativeStar /></i> </span>)}</div></div><Contact onContact={onContact}/>
     </main>
-    <footer><a href="#" className="footer-logo" aria-label="Koomar, accueil"><BrandLogo /></a><span>© {new Date().getFullYear()} KMR Design</span><button className="replay-intro" onClick={() => setIntroVersion(version => version + 1)}>Revoir l’introduction</button><a href="#">Retour en haut <ArrowUp size={14} aria-hidden="true"/></a></footer>
-    {selected && <ProjectDialog project={selected} onClose={() => setSelected(null)}/>}
+    <footer><a href="#" className="footer-logo" aria-label="Koomar, accueil"><BrandLogo /></a><span>© {new Date().getFullYear()} KMR Design</span><SignatureLink onClick={onContact}>Prendre contact</SignatureLink><button className="replay-intro" onClick={() => setIntroVersion(version => version + 1)}>Revoir l’introduction</button><a href="#">Retour en haut <ArrowUp size={14} aria-hidden="true"/></a></footer>
+    {selected && <ProjectDialog project={selected} onContact={onContact} onClose={() => setSelected(null)}/>}
+    {contactOpen && <ContactDialog onClose={() => setContactOpen(false)}/>}
   </>;
 }

@@ -18,11 +18,11 @@ npm run build
 npm run preview
 ```
 
-Le dossier `dist/` est prêt pour un hébergement statique. Aucun serveur métier ni base de données n’est nécessaire. La mise en ligne n’a pas été effectuée.
+Le dossier `dist/` est prêt pour un hébergement statique. Aucun serveur métier ni base de données n’est nécessaire. Site publié : https://laxshmeekoomar.netlify.app/.
 
 ## Contenu
 
-Les données des deux projets et l’adresse de contact se modifient dans `src/data.ts`. Les liens de contact ouvrent le logiciel de messagerie avec le destinataire `kmrdesign2637@outlook.com` et un objet prérempli. Aucun message n’est envoyé automatiquement.
+Les données des projets se modifient dans `src/data.ts`. Les boutons de contact ouvrent un formulaire intégré avec Netlify Forms. Le formulaire statique `public/__forms.html` permet sa détection au déploiement ; les notifications sont configurées dans Netlify. L’envoi est désactivé sur localhost et les erreurs conservent les champs pour permettre une nouvelle tentative.
 
 Les photographies, logos et créations sont repris du portfolio de la cliente, puis optimisés en WebP. Les accroches de navigation et d’introduction ont été réécrites pour ce site ; les descriptions des projets restent fondées sur la source. Aucun résultat commercial ni témoignage n’a été inventé.
 

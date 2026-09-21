@@ -1,0 +1,45 @@
+.contact-dialog{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:#38060d;color:#f4efe5;overflow:auto;isolation:isolate}
+.contact-dialog::backdrop{background:#38060d}
+.contact-dialog *{box-sizing:border-box}
+.contact-veil{position:fixed;inset:0;background:#c7a48c;transform-origin:top;z-index:3;pointer-events:none}
+.contact-atmosphere{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 15% 75%,#8c172d77,transparent 65%),radial-gradient(ellipse at 75% 10%,#c7a48c18,transparent 45%)}
+.contact-close{position:fixed;z-index:4;top:24px;right:32px;display:flex;align-items:center;gap:16px;border:1px solid #c7a48c66;color:#f4efe5;background:#38060de6;padding:12px 18px;border-radius:50px;font:inherit;font-size:12px;cursor:pointer;transition:background .3s,color .3s}
+.contact-close:hover{background:#c7a48c;color:#38060d}
+.contact-composition{position:relative;max-width:1450px;min-height:100%;margin:auto;display:grid;grid-template-columns:.85fr 1.15fr;align-items:center;gap:clamp(36px,6vw,100px);padding:110px clamp(24px,6vw,100px) 70px}
+.contact-kicker{display:block;font-size:10px;letter-spacing:.19em;line-height:1.8}
+.contact-invitation{position:relative}
+.contact-invitation h2{font-family:Georgia,serif;font-size:clamp(54px,5.6vw,90px);line-height:.99;font-weight:400;letter-spacing:-.055em;margin:35px 0 28px;position:relative;z-index:1}
+.contact-invitation h2 em{color:#c7a48c;font-weight:400}
+.contact-invitation>p{font-size:14px;line-height:1.9;color:#f4efe5b8}
+.contact-signature{display:block;margin-top:38px;font-family:Georgia,serif;font-size:23px;font-style:italic;color:#c7a48c}
+.contact-orbit{position:absolute;right:15%;top:0;width:115px;height:115px;border:1px solid #c7a48c2b;border-radius:50%;display:grid;place-items:center;transform:translateY(-30%)}
+.contact-orbit:before{content:'';position:absolute;inset:-16px 20px;border:1px solid #c7a48c2b;border-radius:50%;transform:rotate(40deg)}
+.contact-orbit>span{font-size:62px;display:block;color:#c7a48c}
+.contact-paper{position:relative;background:#f1e9df;color:#59050c;padding:clamp(28px,3.5vw,54px);border-radius:3px;box-shadow:0 35px 90px #14000544}
+.contact-paper:before{content:'';position:absolute;inset:9px;border:1px solid #59050c19;pointer-events:none}
+.contact-paper form{position:relative}
+.contact-paper form>.contact-kicker{margin-bottom:34px}
+.contact-fields-row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.contact-paper label{display:block;font-size:12px;line-height:1.6;margin-bottom:26px}
+.contact-paper input,.contact-paper select,.contact-paper textarea{display:block;width:100%;padding:12px 0;background:transparent;color:#59050c;border:0;border-bottom:1px solid #59050c42;border-radius:0;font:inherit;font-size:14px;transition:border-color .25s,background .25s}
+.contact-paper input:focus,.contact-paper select:focus,.contact-paper textarea:focus{outline:none;border-color:#59050c;background:#fff8}
+.contact-paper input::placeholder,.contact-paper textarea::placeholder{color:#76565a;opacity:1;font-size:12px}
+.contact-paper textarea{resize:vertical;min-height:112px;max-height:330px}
+.contact-optional{opacity:.6;font-size:10px}
+.contact-privacy{font-size:10px;line-height:1.7;color:#76565a;max-width:420px;margin:0 0 26px}
+.contact-honeypot{display:none}
+.contact-submit{width:100%;position:relative;display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:60px;padding:17px 24px;background:#59050c;border:1px solid #59050c;color:#f4efe5;border-radius:60px;font:inherit;font-size:12px;cursor:pointer;box-shadow:inset 0 0 0 3px #c7a48c22;transition:background .35s,color .35s,box-shadow .35s}
+.contact-submit svg{font-size:28px}
+.contact-submit:hover:not(:disabled){background:#c7a48c;color:#59050c;box-shadow:inset 0 0 0 3px #f4efe577}
+.contact-submit:disabled{cursor:wait;opacity:.65}
+.contact-dialog button:focus-visible{outline:2px solid #c7a48c;outline-offset:5px}
+.contact-error{font-size:12px;line-height:1.7;border-left:2px solid #59050c;padding-left:12px;margin:0 0 20px}
+.contact-success{min-height:440px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:22px}
+.contact-success-star{font-size:64px;color:#9b7155}
+.contact-success h3{font-family:Georgia,serif;font-size:clamp(34px,3.2vw,48px);line-height:1.1;font-weight:400;margin:0;letter-spacing:-.04em}
+.contact-success h3:focus{outline:none}
+.contact-success h3 em{font-weight:400;color:#92694e}
+.contact-success p{font-size:14px;line-height:1.8;margin:0 0 8px;max-width:320px}
+@media(max-width:850px){.contact-composition{grid-template-columns:1fr;gap:35px;max-width:660px;padding-top:100px}.contact-invitation h2{font-size:60px;margin:24px 0 20px}.contact-invitation>p{font-size:12px}.contact-signature{display:none}.contact-orbit{right:12%;top:60px}.contact-close{right:20px;top:20px}.contact-paper{padding:32px}}
+@media(max-width:480px){.contact-composition{padding:90px 20px 30px;gap:24px}.contact-invitation h2{font-size:48px}.contact-invitation>.contact-kicker{font-size:8px}.contact-orbit{width:80px;height:80px;right:5%;top:50px}.contact-orbit>span{font-size:42px}.contact-paper{padding:28px 23px}.contact-fields-row{grid-template-columns:1fr;gap:0}.contact-paper label{margin-bottom:22px}.contact-paper form>.contact-kicker{font-size:8px;margin-bottom:26px}.contact-close{padding:9px 15px}.contact-success{min-height:390px}}
+@media(prefers-reduced-motion:reduce){.contact-dialog *{transition:none!important}.contact-veil{display:none}}

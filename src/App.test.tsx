@@ -17,7 +17,6 @@ describe('Portfolio de Laxshmee Koomar', () => {
     const destinations = [
       [/^Projets(?:\s*\(03\))?$/, '#projets'],
       [/^À propos$/, '#apropos'],
-      [/^Contact$/, '#contact'],
     ] as const
 
     destinations.forEach(([name, href]) => {
@@ -28,8 +27,28 @@ describe('Portfolio de Laxshmee Koomar', () => {
     })
 
     expect(screen.getByRole('heading', { name: /Et si on créait la suite\s*\?/i })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /kmrdesign2637@outlook.com/i }))
-      .toHaveAttribute('href', 'mailto:kmrdesign2637@outlook.com?subject=Parlons%20de%20mon%20projet')
+    expect(screen.getByRole('button', { name: 'Contact', exact: true })).toBeInTheDocument()
+    expect(document.querySelector('a[href^="mailto:"]')).toBeNull()
+  })
+
+  it('ouvre le formulaire depuis le bouton de contact', () => {
+    render(<App />)
+    fireEvent.click(screen.getByRole('button', { name: 'Contact', exact: true }))
+    expect(screen.getByRole('dialog')).toBeVisible()
+    expect(screen.getByRole('textbox', { name: /mail/i })).toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: 'Fermer le formulaire' }))
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
+  it('revient au projet après une prise de contact sans perdre le verrouillage du défilement', async () => {
+    render(<App />)
+    fireEvent.click(screen.getByRole('button', { name: 'Découvrir Unik Locks' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Imaginons votre univers' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Fermer le formulaire' }))
+    await waitFor(() => expect(within(screen.getByRole('dialog')).getByRole('heading', { name: 'Unik Locks', exact: true })).toBeVisible())
+    expect(document.body.style.overflow).toBe('hidden')
+    fireEvent.click(screen.getByRole('button', { name: 'Revenir aux projets' }))
+    expect(document.body.style.overflow).not.toBe('hidden')
   })
 
   it.each(['Unik Locks', 'Maëva Hubert'])('permet de consulter puis fermer le projet %s', async (project) => {
