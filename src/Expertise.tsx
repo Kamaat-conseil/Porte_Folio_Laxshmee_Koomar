@@ -5,8 +5,8 @@ import './Expertise.css'
 
 const expertises = [
   { title: 'Direction artistique', description: 'Donner une direction à vos idées. Imaginer un univers sensible et cohérent, où les couleurs, les images et les mots racontent la même histoire.', details: 'Concept créatif · Univers de marque · Moodboard' },
-  { title: 'Identité visuelle', description: 'Faire émerger ce qui vous rend unique. Construire une signature visuelle reconnaissable, pensée pour accompagner votre marque sur tous ses supports.', details: 'Logo · Palette & typographies · Déclinaisons' },
-  { title: 'Contenus & social media', description: 'Faire vivre votre univers au quotidien. Concevoir des contenus visuels qui prolongent votre identité et créent un lien avec votre communauté.', details: 'Visuels éditoriaux · Réseaux sociaux · Supports de communication' },
+  { title: 'Identité visuelle', description: 'Faire émerger ce qui vous rend unique. Construire une signature visuelle reconnaissable, pensée pour accompagner votre marque sur tous ses supports.', details: 'Logo · Charte graphique · Déclinaisons' },
+  { title: 'Contenus & social media', description: 'Faire vivre votre univers au quotidien. Concevoir des contenus visuels qui prolongent votre identité et créent un lien avec votre communauté.', details: 'Visuels éditoriaux · Réseaux sociaux · Montage vidéo' },
   { title: 'Coordination créative', description: 'Relier les idées, les personnes et les étapes. Accompagner la création pour préserver le sens et la cohérence du projet, de son intention à sa réalisation.', details: 'Suivi de projet · Cohérence visuelle · Production créative' },
 ]
 
