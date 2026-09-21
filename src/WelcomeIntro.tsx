@@ -56,7 +56,7 @@ export default function WelcomeIntro({ onComplete, force = false }: { onComplete
     <p className="dream-whisper">Tout commence par <em>une étincelle.</em></p>
     <div className="welcome-center"><div className="welcome-signature"><BrandLogo /></div><span>Une idée. Un univers. Votre signature.</span></div>
     <span className="welcome-caption">Un univers singulier prend forme.</span>
-    <button className="welcome-skip" onClick={finish}>Passer l’introduction <span aria-hidden="true">↗</span></button>
+    <button className="welcome-skip" onClick={finish}>Passer l’introduction</button>
     <div className="dream-progress" aria-hidden="true" />
   </dialog>;
 }

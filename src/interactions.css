@@ -1,0 +1,12 @@
+/* Text and surface treatment make actions explicit without directional icons. */
+.project-open{padding:15px 22px;border:1px solid #59050c20;transition:background .25s,color .25s,box-shadow .25s}
+.project-open>span{max-width:none;overflow:visible}
+.project-art:hover .project-open,.project-art:focus-visible .project-open{background:var(--wine);color:var(--paper);box-shadow:0 6px 24px #59050c22}
+.inline-link,.hero-contact,.email,.scroll-link,.replay-intro,.welcome-skip,footer>a:last-child{min-height:44px;transition:background-color .25s,border-color .25s;text-underline-offset:6px}
+.inline-link:hover,.inline-link:focus-visible{background-color:#59050c09}
+.hero-contact:hover,.email:hover,.welcome-skip:hover{background-color:#f4f0e90c;border-bottom-color:currentColor}
+.scroll-link,.replay-intro,footer>a:last-child{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:color-mix(in srgb,currentColor 45%,transparent)}
+.scroll-link:hover,.replay-intro:hover,footer>a:last-child:hover{text-decoration-color:currentColor}
+.project-open:active,.pill:active{transform:scale(.98)}
+@media(max-width:600px){.project-open{padding:12px 17px}.project-open>span{font-size:10px}.bertine-brand{top:12%}.bertine-brand span{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.project-open,.inline-link,.hero-contact,.email,.scroll-link,.replay-intro,.welcome-skip,footer>a:last-child{transition:none}}
