@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { X } from 'lucide-react';
+import SignatureLink from './SignatureLink';
 import { contactHref, type Project } from './data';
 
 type Props = { project: Project; onClose: () => void };
@@ -21,7 +22,7 @@ export default function ProjectDialog({ project, onClose }: Props) {
       <header className="detail-header"><span className="eyebrow">Étude de cas / {project.year}</span><h2 id="project-title">{project.name}</h2><p>{project.headline}</p></header>
       <div className="detail-story"><p>{project.intro}</p><div><span className="eyebrow">L’accompagnement</span><ul>{project.services.map(service => <li key={service}>{service}</li>)}</ul></div></div>
       <div className="detail-gallery">{project.images.map((image, index) => <img key={image} src={`/images/${image}.webp`} alt={`${project.name} — ${['identité visuelle', 'contenu de marque', 'déclinaison créative', 'supports de communication', 'univers visuel'][index] ?? `création ${index + 1}`}`} loading={index ? 'lazy' : 'eager'} />)}</div>
-      <div className="detail-end"><p>{project.description}</p><a className="pill dark" href={contactHref}>Imaginons votre univers</a><button className="text-button" onClick={onClose}>Revenir aux projets</button></div>
+      <div className="detail-end"><p>{project.description}</p><SignatureLink href={contactHref}>Imaginons votre univers</SignatureLink><button className="text-button" onClick={onClose}>Revenir aux projets</button></div>
     </motion.div>
   </dialog>;
 }
