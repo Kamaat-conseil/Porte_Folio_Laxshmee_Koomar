@@ -27,7 +27,6 @@ export default function Expertise() {
         <AnimatePresence initial={false}>
           {open && <motion.div id={panelId} role="region" aria-labelledby={triggerId} className="expertise-panel" initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: reduced ? 0 : .48, ease: [.22, 1, .36, 1] }}>
             <motion.div className="expertise-content" initial={{ y: reduced ? 0 : 12 }} animate={{ y: 0 }} transition={{ duration: reduced ? 0 : .5, delay: reduced ? 0 : .07 }}>
-              <span className="expertise-index" aria-hidden="true">0{index + 1}</span>
               <div><p>{item.description}</p><span className="expertise-details">{item.details}</span></div>
             </motion.div>
           </motion.div>}

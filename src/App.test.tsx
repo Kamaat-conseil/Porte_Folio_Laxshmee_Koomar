@@ -16,7 +16,7 @@ describe('Portfolio de Laxshmee Koomar', () => {
 
     expect(screen.getByRole('heading', { level: 1, name: /Laxshmee\s*Koomar/i })).toBeInTheDocument()
     const destinations = [
-      [/^Projets(?:\s*\(03\))?$/, '#projets'],
+      [/^Projets$/, '#projets'],
       [/^À propos$/, '#apropos'],
     ] as const
 
@@ -68,7 +68,7 @@ describe('Portfolio de Laxshmee Koomar', () => {
   it('présente Bertine avec ses sept visuels et actualise le nombre de projets', async () => {
     render(<App />)
 
-    expect(screen.getByRole('link', { name: /^Projets\s*\(03\)$/ })).toHaveAttribute('href', '#projets')
+    expect(screen.getByRole('link', { name: /^Projets$/ })).toHaveAttribute('href', '#projets')
     fireEvent.click(screen.getByRole('button', { name: 'Découvrir Pâtisserie Bertine' }))
 
     const dialog = screen.getByRole('dialog')
