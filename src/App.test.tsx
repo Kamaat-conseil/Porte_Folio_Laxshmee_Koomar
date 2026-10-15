@@ -10,6 +10,15 @@ vi.mock('framer-motion', async (importOriginal) => ({
 }))
 
 describe('Portfolio de Laxshmee Koomar', () => {
+  it('ouvre Parenthèse et présente ses six créations', async () => {
+    render(<App />)
+    fireEvent.click(screen.getByRole('button', { name: 'Découvrir Parenthèse' }))
+    const dialog = screen.getByRole('dialog')
+    expect(within(dialog).getAllByRole('img')).toHaveLength(6)
+    expect(within(dialog).getByRole('heading', { name: 'Parenthèse', exact: true })).toBeInTheDocument()
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Fermer le projet' }))
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  })
   it.each([true, false])('présente les sections essentielles avec mouvement réduit : %s', (reduced) => {
     motionPreference.reduced = reduced
     render(<App />)

@@ -1,4 +1,13 @@
 /* Let the original artwork set the stage height; never crop it to a banner. */
+.parenthese .project-art{background:#e5e9df}
+.project-card .parenthese-cover{width:100%;height:auto;object-fit:contain;transform:rotate(-3deg);box-shadow:0 24px 45px -18px #203e3440;transition:transform .85s cubic-bezier(.22,1,.36,1)}
+.parenthese-brand{display:flex;flex-direction:column;align-items:center;gap:24px}
+.parenthese-brand img{width:100%;height:auto;object-fit:contain;mix-blend-mode:multiply}
+.parenthese-brand>span{font:italic clamp(20px,2.4vw,34px)/1.25 Georgia,serif;color:#405d4e;text-align:center}
+.project-art:is(:hover,:focus-visible) .parenthese-cover{transform:rotate(0) translateY(-4px)}
+.parenthese .detail-gallery img{background:#faf8f3;object-fit:contain}
+@media(max-width:600px){.parenthese .detail-gallery{grid-template-columns:1fr}.parenthese .detail-gallery img:first-child{grid-column:auto}}
+@media(prefers-reduced-motion:reduce){.project-card .parenthese-cover,.project-art:is(:hover,:focus-visible) .parenthese-cover{transform:none;transition:none}}
 .project-card .project-art{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,420px));
