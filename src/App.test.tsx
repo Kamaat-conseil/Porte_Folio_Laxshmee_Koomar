@@ -10,6 +10,14 @@ vi.mock('framer-motion', async (importOriginal) => ({
 }))
 
 describe('Portfolio de Laxshmee Koomar', () => {
+  it('déplie le bouton de Maëva au focus clavier et le referme à la sortie', () => {
+    render(<App />)
+    const button = screen.getByRole('button', { name: 'Découvrir Maëva Hubert' })
+    fireEvent.focus(button)
+    expect(button.querySelector('.project-open')).toHaveAttribute('data-expanded', 'true')
+    fireEvent.blur(button)
+    expect(button.querySelector('.project-open')).toHaveAttribute('data-expanded', 'false')
+  })
   it('ouvre Parenthèse et présente ses six créations', async () => {
     render(<App />)
     fireEvent.click(screen.getByRole('button', { name: 'Découvrir Parenthèse' }))

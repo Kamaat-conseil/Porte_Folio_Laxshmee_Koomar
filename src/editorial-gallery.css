@@ -1,5 +1,6 @@
 .editorial-gallery{--gallery-ink:#50306a;--gallery-mat:#e9e1ef;--gallery-light:#f4eff7;padding:0 7%;color:var(--gallery-ink)}
 .editorial-gallery--bertine{--gallery-ink:#8a4d52;--gallery-mat:#f0dfe0;--gallery-light:#fbf1e9}
+.editorial-gallery--maeva{--gallery-ink:#765741;--gallery-mat:#e6d3bd;--gallery-light:#f7eee2}
 .editorial-chapter{margin-bottom:clamp(40px,6vw,80px)}
 .editorial-chapter-heading{border-top:1px solid color-mix(in srgb,var(--gallery-ink) 25%,transparent);padding-top:24px;margin-bottom:24px}
 .editorial-chapter h3{font:italic clamp(25px,3.2vw,42px)/1.15 Georgia,serif;letter-spacing:-.035em;margin:0;max-width:650px}

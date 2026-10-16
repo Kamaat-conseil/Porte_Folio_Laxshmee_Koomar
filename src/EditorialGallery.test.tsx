@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import EditorialGallery from './EditorialGallery';
 
 describe('Les compositions des projets', () => {
-  it.each([['unik', 5, 2], ['bertine', 7, 3]] as const)('présente toutes les créations de %s en duos puis un focus', (project, count, pairs) => {
+  it.each([['unik', 5, 2], ['bertine', 7, 3], ['maeva', 5, 2]] as const)('présente toutes les créations de %s en duos puis un focus', (project, count, pairs) => {
     render(<EditorialGallery project={project} />);
     const sections = screen.getAllByRole('region');
     expect(sections).toHaveLength(pairs + 1);

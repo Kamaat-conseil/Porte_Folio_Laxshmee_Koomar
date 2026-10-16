@@ -2,6 +2,14 @@ import { motion, useReducedMotion } from 'framer-motion';
 import './editorial-gallery.css';
 
 const galleries = {
+  maeva: {
+    name: 'Maëva Hubert',
+    chapters: [
+      { title: 'Une signature, toute en douceur.', kind: 'identity', images: [['maeva-1', 'Le logo & le monogramme MH'], ['maeva-3', 'L’atmosphère de la marque']] },
+      { title: 'Du réel à l’imaginaire.', kind: 'collection', images: [['maeva-4', 'Le portrait au cabinet'], ['maeva-5', 'La déclinaison illustrée']] },
+      { title: 'La personne derrière la signature.', kind: 'focus', description: 'Un portrait de présentation aux couleurs de la marque. Une façon de raconter son parcours et de créer un premier lien, avant même la rencontre.', images: [['maeva-2', 'Réseaux sociaux · Qui suis-je ?']] },
+    ],
+  },
   unik: {
     name: 'Unik Locks',
     chapters: [
