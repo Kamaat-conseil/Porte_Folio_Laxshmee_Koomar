@@ -1,0 +1,21 @@
+.editorial-gallery{--gallery-ink:#50306a;--gallery-mat:#e9e1ef;--gallery-light:#f4eff7;padding:0 7%;color:var(--gallery-ink)}
+.editorial-gallery--bertine{--gallery-ink:#8a4d52;--gallery-mat:#f0dfe0;--gallery-light:#fbf1e9}
+.editorial-chapter{margin-bottom:clamp(40px,6vw,80px)}
+.editorial-chapter-heading{border-top:1px solid color-mix(in srgb,var(--gallery-ink) 25%,transparent);padding-top:24px;margin-bottom:24px}
+.editorial-chapter h3{font:italic clamp(25px,3.2vw,42px)/1.15 Georgia,serif;letter-spacing:-.035em;margin:0;max-width:650px}
+.editorial-duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,3vw,32px)}
+.editorial-duo figure{margin:0;min-width:0}
+.editorial-mat{display:flex;align-items:center;justify-content:center;aspect-ratio:3/4;padding:clamp(12px,2.5vw,32px);background:radial-gradient(ellipse at 25% 10%,var(--gallery-light),var(--gallery-mat));border:1px solid color-mix(in srgb,var(--gallery-ink) 8%,transparent)}
+.editorial-mat img{display:block;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 14px 30px -12px color-mix(in srgb,var(--gallery-ink) 28%,transparent);transition:transform .7s cubic-bezier(.22,1,.36,1)}
+@media(hover:hover){.editorial-mat:hover img{transform:translateY(-5px)}}
+.editorial-chapter--signatures .editorial-mat{aspect-ratio:1}
+.editorial-chapter--signatures img{box-shadow:none}
+.editorial-duo figcaption{font-size:11px;line-height:1.6;padding-top:14px}
+.editorial-chapter--focus{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(24px,4vw,60px);align-items:center;background:var(--gallery-light);padding:clamp(20px,4vw,48px)}
+.editorial-chapter--focus .editorial-duo{grid-template-columns:minmax(0,1fr)}
+.editorial-chapter--focus .editorial-chapter-heading{margin:0}
+.editorial-chapter-heading p{font-size:13px;line-height:1.85;margin:24px 0 0}
+.editorial-chapter--focus .editorial-mat{aspect-ratio:auto;padding:0;background:none;border:0}
+.editorial-chapter--focus img{width:100%}
+@media(max-width:600px){.editorial-gallery{padding:0 5%}.editorial-duo{gap:12px}.editorial-mat{padding:10px}.editorial-duo figcaption{font-size:10px}.editorial-chapter--focus{grid-template-columns:minmax(0,1fr)}.editorial-chapter h3{font-size:27px}}
+@media(prefers-reduced-motion:reduce){.editorial-mat img{transition:none}.editorial-mat:hover img{transform:none}}
