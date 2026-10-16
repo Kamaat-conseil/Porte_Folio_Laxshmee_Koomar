@@ -69,8 +69,11 @@
 }
 .project-card .project-art:is(:hover,:focus-visible) :is(.unik-main,.unik-secondary,.maeva-photo,.bertine-character,.unik-brand img,.maeva-brand img,.bertine-brand img){transform:rotate(0) translateY(-4px)}
 @media(max-width:600px){
-  .project-card .project-art{grid-template-columns:minmax(0,340px);gap:40px;padding:64px 32px 100px}
-  .project-card .project-art :is(.unik-brand,.maeva-brand,.bertine-brand){gap:18px}
+  .project-card .project-art{grid-template-columns:minmax(0,280px);gap:0;padding:32px 32px 88px}
+  .project-card .project-art :is(.parenthese-cover,.unik-main,.maeva-photo,.bertine-character){display:none}
+  .project-card .project-art :is(.parenthese-brand,.unik-brand,.maeva-brand,.bertine-brand){gap:0}
+  .project-card .project-art :is(.parenthese-brand,.unik-brand,.maeva-brand,.bertine-brand)>span{display:none}
+  .project-card .project-art :is(.parenthese-brand,.unik-brand,.maeva-brand,.bertine-brand) img{aspect-ratio:1;object-fit:contain;transform:none}
   .project-card .project-art .art-label{top:22px;left:24px}
 }
 @media(prefers-reduced-motion:reduce){
