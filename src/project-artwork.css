@@ -44,7 +44,7 @@
 .project-card .unik-secondary{transform:rotate(3deg)}
 .project-card .maeva-photo{transform:rotate(-2deg)}
 .project-card .bertine-character{transform:rotate(-2deg)}
-.project-card .project-art :is(.maeva-brand,.bertine-brand){
+.project-card .project-art :is(.unik-brand,.maeva-brand,.bertine-brand){
   position:relative;
   inset:auto;
   width:100%;
@@ -55,25 +55,27 @@
   gap:24px;
   background:transparent;
 }
-.project-card .project-art :is(.maeva-brand,.bertine-brand) img{
+.project-card .project-art :is(.unik-brand,.maeva-brand,.bertine-brand) img{
   width:100%;
   height:auto;
   object-fit:contain;
   transform:rotate(2deg);
   transition:transform .85s cubic-bezier(.22,1,.36,1);
 }
-.project-card .project-art :is(.maeva-brand,.bertine-brand)>span{
+.project-card .project-art :is(.unik-brand,.maeva-brand,.bertine-brand)>span{
   margin:0;
   font:italic clamp(20px,2.4vw,34px)/1.25 Georgia,serif;
   text-align:center;
 }
-.project-card .project-art:is(:hover,:focus-visible) :is(.unik-main,.unik-secondary,.maeva-photo,.bertine-character,.maeva-brand img,.bertine-brand img){transform:rotate(0) translateY(-4px)}
+.project-card .project-art:is(:hover,:focus-visible) :is(.unik-main,.unik-secondary,.maeva-photo,.bertine-character,.unik-brand img,.maeva-brand img,.bertine-brand img){transform:rotate(0) translateY(-4px)}
 @media(max-width:600px){
   .project-card .project-art{grid-template-columns:minmax(0,340px);gap:40px;padding:64px 32px 100px}
-  .project-card .project-art :is(.maeva-brand,.bertine-brand){gap:18px}
+  .project-card .project-art :is(.unik-brand,.maeva-brand,.bertine-brand){gap:18px}
   .project-card .project-art .art-label{top:22px;left:24px}
 }
 @media(prefers-reduced-motion:reduce){
-  .project-card .project-art :is(.unik-main,.unik-secondary,.maeva-photo,.bertine-character,.maeva-brand img,.bertine-brand img){transition:none;transform:none}
-  .project-card .project-art:is(:hover,:focus-visible) :is(.unik-main,.unik-secondary,.maeva-photo,.bertine-character,.maeva-brand img,.bertine-brand img){transform:none}
+  .project-card .project-art :is(.unik-main,.unik-secondary,.maeva-photo,.bertine-character,.unik-brand img,.maeva-brand img,.bertine-brand img){transition:none;transform:none}
+  .project-card .project-art:is(:hover,:focus-visible) :is(.unik-main,.unik-secondary,.maeva-photo,.bertine-character,.unik-brand img,.maeva-brand img,.bertine-brand img){transform:none}
 }
+
+.unik-brand{color:#50306a}.unik-brand img{mix-blend-mode:multiply}

@@ -6,7 +6,6 @@ import './credentials.css';
 
 const documents = [
   { title: 'Mon parcours', label: 'Consulter mon CV', note: 'Direction artistique & coordination créative', file: 'laxshmee-koomar-cv.pdf', pages: ['cv-preview.webp'], tag: 'LE SENS DU PARCOURS' },
-  { title: 'Le geste, certifié.', label: 'Voir ma certification', note: 'ICDL · Édition d’image · Photoshop · 2024', file: 'laxshmee-koomar-icdl.pdf', pages: ['icdl-preview-1.webp', 'icdl-preview-2.webp'], tag: 'LA PRÉCISION DU SAVOIR-FAIRE' },
 ] as const;
 type Document = typeof documents[number];
 
@@ -34,9 +33,9 @@ export default function CreativeCredentials() {
   const [selected, setSelected] = useState<Document | null>(null);
   const reduced = useReducedMotion();
   return <>
-    <div className="credentials" aria-label="Parcours et certification">
+    <div className="credentials" aria-label="Mon parcours créatif">
       {documents.map((item, index) => <motion.button key={item.file} className={`credential-card credential-card-${index}`} onClick={() => setSelected(item)} whileHover={reduced ? undefined : { y: -5 }} whileTap={reduced ? undefined : { scale: .98 }}>
-        <span className="credential-paper" aria-hidden="true"><img src={`/documents/${item.pages[0]}`} alt="" loading="lazy" /></span>
+        <span className="credential-paper" aria-hidden="true"><span>KOOMAR</span><DecorativeStar /><span>PARCOURS<br />CRÉATIF</span></span>
         <span className="credential-card-copy"><span className="credential-tag">{item.tag}</span><span className="credential-heading">{item.title}</span><span className="credential-note">{item.note}</span><span className="credential-action">{item.label}<DecorativeStar /></span></span>
       </motion.button>)}
     </div>
